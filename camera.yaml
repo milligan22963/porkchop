@@ -1,0 +1,10 @@
+logger:
+  level: info
+  formatter: text
+database:
+  user: dan
+  password: Sug@rP0pMu$1c
+  type: mysql
+webserver:
+  cache: "/var/cache/afm/photos/"
+  files: "/var/www/html/"

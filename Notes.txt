@@ -1,0 +1,55 @@
+create table settings (
+    id int not null auto_increment primary key,
+    user_device_mapping_id int,
+    name varchar(64),
+    value varchar(128),
+    active smallint
+);
+
+create table users (
+    id int not null auto_increment primary key,
+    fname varchar(128),
+    lname varchar(128),
+    nname varchar(128),
+    age int,
+    accepts_cookies int,
+    filter_content int,
+    active smallint
+);
+
+create table devices (
+    id int not null auto_increment primary key,
+    model varchar(128),
+    serial varchar(128),
+    firmware varchar(128),
+    active smallint
+);
+
+create table device_user_mapping (
+    id int not null auto_increment primary key,
+    user_id int,
+    device_id int,
+    active smallint
+);
+
+create table images (
+    id int not null auto_increment primary key,
+    user_id int,
+    device_id int,
+    path text,
+    active smallint
+);
+
+
+// Device will need to connect to the cloud
+// If not registered, it will need to wait until registered
+// Once registered, download settings
+
+// topics should be afm/v1/<action>/device_id
+// that all topics contain a device id so we can look up
+// the device and map it to a user
+
+// images will need to have
+// first field is
+[length - 256 max][filename]
+[size 32bit max][image data]
