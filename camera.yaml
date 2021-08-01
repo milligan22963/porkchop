@@ -3,7 +3,7 @@ logger:
   formatter: text
 database:
   user: dan
-  password: Sug@rP0pMu$1c
+  password: testing
   type: mysql
 webserver:
   cache: "/var/cache/afm/photos/"
