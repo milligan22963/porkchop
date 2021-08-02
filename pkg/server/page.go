@@ -8,7 +8,7 @@ import (
 	"site/pkg/tools"
 )
 
-// MetaData is data added to the page
+// Meta is data added to the page
 type Meta struct {
 	Name    string
 	Content string
@@ -21,6 +21,14 @@ type Page struct {
 	javaScript  []string
 	meta        []Meta
 	body        []string
+}
+
+type HtmlPage interface {
+	Render(w io.Writer, r *http.Request) error
+	SetTitle(title string)
+	AddStyleSheet(styleSheet string)
+	AddJavaScript(scriptFile string)
+	AddMetaData(name, content string)
 }
 
 // Render will consider the input request and render the appropriate response
@@ -52,8 +60,8 @@ func (page *Page) Render(w io.Writer, r *http.Request) error {
 }
 
 // SetTitle sets the title for this page
-func (page *Page) SetTitle(text string) {
-	page.title = text
+func (page *Page) SetTitle(title string) {
+	page.title = title
 }
 
 // AddStyleSheet adds a style sheet to this page
