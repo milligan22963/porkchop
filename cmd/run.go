@@ -252,6 +252,7 @@ func setupWebserver(siteConfig *config.SiteConfiguration) {
 	serverPort := viper.GetInt(config.WebServerPort)
 	serverAddress := viper.GetString(config.WebServerAddress)
 	router.HandleFunc("/", server.GenerateHomePage)
+	router.Handle("/resources/", http.FileServer(http.Dir("resources")))
 	server := &http.Server{Addr: serverAddress + ":" + strconv.Itoa(serverPort), Handler: router}
 
 	logrus.Infof("http server: %v", server.Addr)

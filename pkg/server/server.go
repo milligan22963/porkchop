@@ -17,6 +17,8 @@ type HTTPResponse struct {
 func GenerateHomePage(w http.ResponseWriter, r *http.Request) {
 	homePage := Page{title: "AFM"}
 
+	homePage.AddStyleSheet("resources/polaroid.css")
+
 	err := homePage.Render(w, r)
 	if err != nil {
 		logrus.Errorf("failed to render: %v", err)
