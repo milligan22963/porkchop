@@ -24,3 +24,8 @@ func GenerateHomePage(w http.ResponseWriter, r *http.Request) {
 		logrus.Errorf("failed to render: %v", err)
 	}
 }
+
+// HandleFavoriteIcon will serve up a favorite as desired
+func HandleFavoriteIcon(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "favicon.ico")
+}

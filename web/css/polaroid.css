@@ -5,7 +5,7 @@
   }
 
 body {
-    background-color: black;
+    background-color: rgb(44, 42, 42);
 }
 ul.polaroids li {
     display: inline;
