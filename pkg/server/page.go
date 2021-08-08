@@ -33,14 +33,15 @@ type HtmlPage interface {
 
 // Render will consider the input request and render the appropriate response
 func (page *Page) Render(w io.Writer, r *http.Request) error {
-	fmt.Fprintln(w, "<html><header>")
+	fmt.Fprintln(w, "<html><head>")
 	if len(page.title) > 0 {
 		fmt.Fprintf(w, "<title>%s</title>\n", page.title)
 	}
 
 	// include style sheets
 	for _, sheet := range page.styleSheets {
-		fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"%s/>\n", sheet)
+		// fmt.Printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\"/>\n", sheet)
+		fmt.Fprintf(w, "<link type=\"text/css\" rel=\"stylesheet\" href=\"%s\"/>\n", sheet)
 	}
 
 	// js files
@@ -53,7 +54,7 @@ func (page *Page) Render(w io.Writer, r *http.Request) error {
 		fmt.Fprintf(w, "<meta name=\"%s\" content=\"%s\"/>\n", meta.Name, meta.Content)
 	}
 
-	fmt.Fprintf(w, "</header>")
+	fmt.Fprintf(w, "</head>")
 	fmt.Fprintf(w, "<body>Welcome to the HomePage!</body></html>")
 
 	return nil

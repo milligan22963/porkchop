@@ -11,7 +11,6 @@ import (
 	"os/signal"
 	"site/config"
 	"site/pkg/database"
-	"site/pkg/server"
 	"site/pkg/topics"
 	"strconv"
 	"sync"
@@ -251,8 +250,9 @@ func setupWebserver(siteConfig *config.SiteConfiguration) {
 
 	serverPort := viper.GetInt(config.WebServerPort)
 	serverAddress := viper.GetString(config.WebServerAddress)
-	router.HandleFunc("/", server.GenerateHomePage)
-	router.Handle("/resources/", http.FileServer(http.Dir("resources")))
+
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("web"))))
+
 	server := &http.Server{Addr: serverAddress + ":" + strconv.Itoa(serverPort), Handler: router}
 
 	logrus.Infof("http server: %v", server.Addr)

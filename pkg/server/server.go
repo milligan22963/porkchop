@@ -17,7 +17,7 @@ type HTTPResponse struct {
 func GenerateHomePage(w http.ResponseWriter, r *http.Request) {
 	homePage := Page{title: "AFM"}
 
-	homePage.AddStyleSheet("resources/polaroid.css")
+	homePage.AddStyleSheet("polaroid.css")
 
 	err := homePage.Render(w, r)
 	if err != nil {
