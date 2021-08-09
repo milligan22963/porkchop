@@ -55,7 +55,11 @@ func (page *Page) Render(w io.Writer, r *http.Request) error {
 	}
 
 	fmt.Fprintf(w, "</head>")
-	fmt.Fprintf(w, "<body>Welcome to the HomePage!</body></html>")
+	fmt.Fprintf(w, "<body>")
+	for _, body := range page.body {
+		fmt.Fprint(w, body)
+	}
+	fmt.Fprintf(w, "</body></html>")
 
 	return nil
 }

@@ -27,5 +27,6 @@ func GenerateHomePage(w http.ResponseWriter, r *http.Request) {
 
 // HandleFavoriteIcon will serve up a favorite as desired
 func HandleFavoriteIcon(w http.ResponseWriter, r *http.Request) {
+	logrus.Error("favicon served w/ chocolate")
 	http.ServeFile(w, r, "favicon.ico")
 }

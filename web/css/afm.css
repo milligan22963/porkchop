@@ -1,12 +1,43 @@
-@media screen and (max-width: 767px) {
-    .polaroids li:nth-child(n+5) {
-      display: none;
-    }
-  }
-
 body {
-    background-color: rgb(44, 42, 42);
+    background-color: #332828;
 }
+.menu {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+.menu a {
+    background-color: #333030;
+    padding: 8px;
+    margin-top: 7px;
+    display: inline;
+    width: 100%;
+    color: rgb(119, 116, 116);
+    border-color: #333030;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+}
+.main {
+    vertical-align: middle;
+    border-style: solid;
+    border-radius: 7px;
+    border-width: 2px;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+  
+@media only screen and (max-width: 620px) {
+    /* For mobile phones: */
+    .menu, .main, .right {
+        width: 100%;
+    }
+}
+
 ul.polaroids li {
     display: inline;
 }

@@ -252,6 +252,7 @@ func setupWebserver(siteConfig *config.SiteConfiguration) {
 	serverAddress := viper.GetString(config.WebServerAddress)
 
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("web"))))
+	// router.HandleFunc("favicon.ico", server.HandleFavoriteIcon)
 
 	server := &http.Server{Addr: serverAddress + ":" + strconv.Itoa(serverPort), Handler: router}
 
