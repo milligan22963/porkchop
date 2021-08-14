@@ -14,7 +14,7 @@ body {
     display: inline;
     width: 100%;
     color: rgb(119, 116, 116);
-    border-color: #333030;
+    border-color: currentColor;
     border-style: solid;
     border-width: 2px;
     border-radius: 7px;
