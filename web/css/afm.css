@@ -31,7 +31,14 @@ body {
     margin-bottom: 10px;
     padding: 0 20px;
 }
-  
+
+.liveimage {
+    border-radius: 8px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
 @media only screen and (max-width: 620px) {
     /* For mobile phones: */
     .menu, .main, .right {
@@ -58,7 +65,6 @@ ul.polaroids a {
     transform: rotate(-2deg);
     transition: transform .15s linear;
 }
-
 /*
 ul.polaroids a {
     background: #fff; display: inline; float: left; margin: 0 0 27px 30px; 

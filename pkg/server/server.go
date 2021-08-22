@@ -2,7 +2,10 @@
 package server
 
 import (
+	"io"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/sirupsen/logrus"
 )
@@ -22,6 +25,34 @@ func GenerateHomePage(w http.ResponseWriter, r *http.Request) {
 	err := homePage.Render(w, r)
 	if err != nil {
 		logrus.Errorf("failed to render: %v", err)
+	}
+}
+
+// RetrieveLiveImage returns the live image from the camera
+func RetrieveLiveImage(w http.ResponseWriter, r *http.Request) {
+	logrus.Info("serving up an image")
+	file, err := os.Open("web/images/avatar.webp")
+	if err != nil {
+		logrus.Errorf("unable to open image")
+		return
+	}
+
+	defer file.Close()
+
+	w.Header().Set("Content-Type", "image/webp")
+	fileInfo, err := file.Stat()
+	if err != nil {
+		logrus.Error("failed to stat file")
+		return
+	}
+	w.Header().Set("Content-Length", strconv.FormatInt(fileInfo.Size(), 10))
+	bytesWritten, err := io.Copy(w, file)
+	if err != nil {
+		logrus.Error("failed to serve file")
+		return
+	}
+	if bytesWritten != fileInfo.Size() {
+		logrus.Error("incorrect amount of data copied")
 	}
 }
 
